@@ -1,1 +1,5 @@
 *.dat
+
+loop.h
+arraygen
+ptr_chase

@@ -53,10 +53,10 @@ static inline void try_mmap_pair_collective(void **out_a, void **out_b,
     uint64_t len = (bytes + page_size - 1) & ~(page_size - 1);
 
     void *ta = mmap(NULL, len, PROT_READ | PROT_WRITE,
-                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | huge_flag,
+                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE | huge_flag,
                     -1, 0);
     void *tb = mmap(NULL, len, PROT_READ | PROT_WRITE,
-                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | huge_flag,
+                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE | huge_flag,
                     -1, 0);
 
     int local_ok = (ta != MAP_FAILED && tb != MAP_FAILED) ? 1 : 0;
