@@ -55,8 +55,18 @@ cd ${STREAM_DIR}
 # fi
 
 # make clean && make
-echo "*********** Stream compiled successfully. Compiling Ptr_chase..."
+echo "*********** Stream compiled successfully."
 
+export RANDOM_GENERATOR=${RANDOM_GENERATOR}
+if [ "${RANDOM_GENERATOR}" = "random" ]; then
+    export RANDOM_DIR="${ROOT_DIR}/src/RandomAccess_hpcc"
+    echo "*********** Compiling RandomAccess..."
+    cd ${RANDOM_DIR} && make clean && make && cd ${ROOT_DIR}
+    echo "*********** RandomAccess compiled successfully."
+fi
+export RANDOM_DIR
+
+echo "*********** Compiling Ptr_chase..."
 
 cd ${PTRCHASE_DIR}
 export PTRCHASE_NUM_INSTRUCTIONS=${PTRCHASE_NUM_INSTRUCTIONS}

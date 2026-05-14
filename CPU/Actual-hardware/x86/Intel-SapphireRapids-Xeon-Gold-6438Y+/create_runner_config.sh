@@ -19,6 +19,7 @@ def create_runner_config(base_cfg, runner_config_path):
         'Experiments.stream-numactl-additional-args' : 'STREAM_NUMACTL_ADDITIONAL_ARGS',
         'Experiments.ptrchase-core' : 'PTRCHASE_CORE',
         'Experiments.ptrchase-numactl-additional-args' : 'PTRCHASE_NUMACTL_ADDITIONAL_ARGS',
+        'Experiments.random-generator' : 'RANDOM_GENERATOR',
         'Experiments.rwratio-min'   : 'RWRATIO_MIN',
         'Experiments.rwratio-max'   : 'RWRATIO_MAX',
         'Experiments.rwratio-step'  : 'RWRATIO_STEP',

@@ -117,6 +117,77 @@ static inline void try_posix_pair(void **out_a, void **out_b,
     }
 }
 
+/* Collective hugepage attempt for a single buffer.
+ * All-or-nothing via MPI_Allreduce(MIN): if any rank fails, all ranks release
+ * the mapping and fall through to the next tier.
+ *
+ * Caller pattern (each tier is one commentable line):
+ *     if (mode == MESS_ALLOC_NONE) try_mmap_single_collective(...);
+ */
+static inline void try_mmap_single_collective(void **out_p,
+                                              uint64_t bytes,
+                                              uint64_t page_size,
+                                              int huge_flag,
+                                              const char *size_label,
+                                              uint64_t *out_len,
+                                              enum mess_alloc_mode *out_mode,
+                                              MPI_Comm comm,
+                                              int myrank)
+{
+    uint64_t len = (bytes + page_size - 1) & ~(page_size - 1);
+
+    void *tp = mmap(NULL, len, PROT_READ | PROT_WRITE,
+                    MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE | huge_flag,
+                    -1, 0);
+
+    int local_ok = (tp != MAP_FAILED) ? 1 : 0;
+    int all_ok = 0;
+    MPI_Allreduce(&local_ok, &all_ok, 1, MPI_INT, MPI_MIN, comm);
+
+    if (all_ok) {
+        *out_p = tp;
+        *out_len = len;
+        enum mess_alloc_mode m = (huge_flag == MAP_HUGE_1GB) ? MESS_ALLOC_1GB : MESS_ALLOC_2MB;
+        *out_mode = m;
+        if (myrank == 0) {
+            fprintf(stderr,
+                    "[random] all ranks got %s-hugepage (%lu bytes per table)\n",
+                    size_label, len);
+        }
+    } else {
+        if (tp != MAP_FAILED) munmap(tp, len);
+        if (myrank == 0) {
+            fprintf(stderr,
+                    "[random] %s-hugepage failed on at least one rank, falling through\n",
+                    size_label);
+        }
+    }
+}
+
+/* posix_memalign fallback for a single buffer.
+ * Caller must memset() to zero if needed (posix_memalign does not zero-fill). */
+static inline void try_posix_single(void **out_p,
+                                    uint64_t bytes,
+                                    size_t align,
+                                    enum mess_alloc_mode *out_mode,
+                                    int myrank)
+{
+    int r = posix_memalign(out_p, align, bytes);
+    if (r != 0) {
+        if (myrank == 0) {
+            fprintf(stderr, "[random] posix_memalign failed (%d)\n", r);
+        }
+        *out_p = NULL;
+        return;
+    }
+    *out_mode = MESS_ALLOC_POSIX;
+    if (myrank == 0) {
+        fprintf(stderr,
+                "[random] posix_memalign (4KB pages), %lu bytes per table\n",
+                bytes);
+    }
+}
+
 /* Release memory regardless of how it was allocated. */
 static inline void mess_free(void *p,
                              uint64_t mmap_len,

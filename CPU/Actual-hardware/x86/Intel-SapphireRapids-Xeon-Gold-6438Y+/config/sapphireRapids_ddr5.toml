@@ -21,6 +21,8 @@ stream-numactl-additional-args = "numactl --membind=0"
 ptrchase-core = "0"
 ptrchase-numactl-additional-args = "--membind=0"
 
+random-generator = "stream"   # "stream" or "random"
+
 rwratio-min = 0
 rwratio-max = 100
 # rwratio-step = 20
@@ -35,8 +37,8 @@ lat-meas-reps = 1
 
 # time-stream-stabilize= 15   # warm-up time. ensures system reaches steady-state.
 time-stream-stabilize= 5
-time-after-bw = 4
-time-after-stream-termination = 0
+time-after-bw = 4   # waiting time before kill STREAM process
+time-after-stream-termination = 0   # waiting time before next step
 
 [Counters]
 bw-tool = "perf"

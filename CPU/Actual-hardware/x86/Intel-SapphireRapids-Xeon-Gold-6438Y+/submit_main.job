@@ -40,11 +40,18 @@ launch_stream() {
     # Launch stream and redirect stdout and stderr to a log file
     export STREAM_LOG_FILE=${OUTPUT_DIR_LOG}/stream_${rd_percentage}_${pause}.log
 
-    # srun -n ${STREAM_CORE_COUNT} --cpu-bind=map_cpu:${STREAM_CORE_LIST} ${STREAM_DIR}/stream_mpi.x -r ${rd_percentage} -p ${pause} >>${STREAM_LOG_FILE} 2>&1 & 
-    numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} \
-        mpirun -n ${STREAM_CORE_COUNT} \
-        ${STREAM_DIR}/stream_mpi.x -r ${rd_percentage} -p ${pause} \
-        >>${STREAM_LOG_FILE} 2>&1 &
+    if [ "${RANDOM_GENERATOR}" = "random" ]; then
+        numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} \
+            mpirun -n ${STREAM_CORE_COUNT} \
+            ${RANDOM_DIR}/random_mpi.x -r ${rd_percentage} -p ${pause} \
+            >>${STREAM_LOG_FILE} 2>&1 &
+    else
+        # srun -n ${STREAM_CORE_COUNT} --cpu-bind=map_cpu:${STREAM_CORE_LIST} ${STREAM_DIR}/stream_mpi.x -r ${rd_percentage} -p ${pause} >>${STREAM_LOG_FILE} 2>&1 &
+        numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} \
+            mpirun -n ${STREAM_CORE_COUNT} \
+            ${STREAM_DIR}/stream_mpi.x -r ${rd_percentage} -p ${pause} \
+            >>${STREAM_LOG_FILE} 2>&1 &
+    fi
 
     # Save the PID for later termination
     export STREAM_PID=$!
