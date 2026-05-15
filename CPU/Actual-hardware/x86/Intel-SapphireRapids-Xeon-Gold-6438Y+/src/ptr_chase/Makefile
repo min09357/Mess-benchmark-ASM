@@ -8,12 +8,12 @@ TARGET_ARRAYGEN=arraygen
 cache_line_size = 64
 
 # Benchmark configuration
-array_size = $(shell bc <<< $${PTRCHASE_ARRAY_SIZE}) # using calculator to improve number readability
+array_size = $(if $(PTRCHASE_ARRAY_SIZE),$(shell bc <<< $${PTRCHASE_ARRAY_SIZE}),0) # using calculator to improve number readability
 instructions = ${PTRCHASE_NUM_INSTRUCTIONS}
 iterations = ${PTRCHASE_NUM_ITERATIONS}
 # Compute derived parameters
-array_elems:=$(shell bc <<< "$(array_size) / $(cache_line_size)")
-loop_instr:=$(shell bc <<< "$(instructions) / $(iterations)")
+array_elems:=$(if $(array_size),$(shell bc <<< "$(array_size) / $(cache_line_size)"),0)
+loop_instr:=$(if $(instructions)$(iterations),$(shell bc <<< "$(instructions) / $(iterations)"),0)
 
 all: ptr_chase array
 

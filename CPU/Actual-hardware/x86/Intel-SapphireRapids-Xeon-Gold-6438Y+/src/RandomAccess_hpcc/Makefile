@@ -1,3 +1,5 @@
+export MPICH_CC = /usr/bin/gcc
+
 MPICC    = mpicc
 CC       = gcc
 CFLAGS   = -march=native -Wall -O3

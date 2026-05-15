@@ -80,9 +80,11 @@ def split_dataframe_by_rd_pause_percentage(df):
 
     return df_rws
 
-def remove_outliers(df,col,n_std): 
+def remove_outliers(df,col,n_std):
     mean = df[col].mean()
     sd = df[col].std()
+    if pd.isna(sd):  # N=1 group has no std; nothing to filter
+        return df
     # if(sd>100):
     #     print(sd)
     #     print(mean)
@@ -90,10 +92,10 @@ def remove_outliers(df,col,n_std):
     #     print(df[col])
     df = df[(df[col] <= mean+(n_std*sd))]
     df = df[(df[col] >= mean-(n_std*sd))]
-    
+
     # if(sd>100):
     #     print(df)
-  
+
     return df
 
 
