@@ -30,6 +30,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import os
+import re
 import pandas as pd
 import calculator
 import line_parser
@@ -41,7 +42,12 @@ class Parser:
     def __init__(self, type, input_dir, config):
         print(input_dir)
         self.input_dir = input_dir
-        self.files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
+        file_prefix = 'bw' if type == 'bandwidth' else 'lat'
+        file_pattern = re.compile(rf'^{file_prefix}_[^_]+_\d+_\d+\.txt$')
+        self.files = sorted([
+            f for f in os.listdir(input_dir)
+            if os.path.isfile(os.path.join(input_dir, f)) and file_pattern.match(f)
+        ])
         self.config = config
         if type == 'bandwidth':
             self.line_parser = line_parser.Factory(type, 'perf', config)
@@ -118,5 +124,4 @@ class Parser:
 
     def calculateMetrics(self):
         self.calculator.calculate(self.df, self.config)
-
 

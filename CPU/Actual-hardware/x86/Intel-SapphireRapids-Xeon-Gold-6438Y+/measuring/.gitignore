@@ -2,3 +2,8 @@ bw/*
 lat/*
 log/*
 output/*
+
+!bw/.gitkeep
+!lat/.gitkeep
+!log/.gitkeep
+!output/.gitkeep
