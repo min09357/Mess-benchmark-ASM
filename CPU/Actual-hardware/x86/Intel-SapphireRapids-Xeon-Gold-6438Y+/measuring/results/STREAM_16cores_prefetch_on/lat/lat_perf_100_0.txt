@@ -1,0 +1,33 @@
+[ptr_chase] 1GB-hugepage, 1073741824 bytes
+array_bytes: 1073741824
+298709263204 cycles:u 
+200166663 instructions:u 
+mem latency is (with time): 750.541ns
+mem latency is: 663.246ns
+calculated clocks per seconds is: 1.9883e+09
+1418 r2012:u 
+18206 r1012:u 
+150.026 seconds time elapsed
+Done walking!
+[ptr_chase] 1GB-hugepage, 1073741824 bytes
+array_bytes: 1073741824
+299146413455 cycles:u 
+200167021 instructions:u 
+mem latency is (with time): 752.375ns
+mem latency is: 664.215ns
+calculated clocks per seconds is: 1.98635e+09
+807 r2012:u 
+29 r1012:u 
+150.443 seconds time elapsed
+Done walking!
+[ptr_chase] 1GB-hugepage, 1073741824 bytes
+array_bytes: 1073741824
+297835659254 cycles:u 
+200166276 instructions:u 
+mem latency is (with time): 748.826ns
+mem latency is: 661.307ns
+calculated clocks per seconds is: 1.98703e+09
+1391 r2012:u 
+4651 r1012:u 
+150.056 seconds time elapsed
+Done walking!

@@ -1,0 +1,36 @@
+
+ Performance counter stats for 'system wide':
+
+S0        1         2213962924      unc_m_cas_count.rd                                                    
+S0        1             982978      unc_m_cas_count.wr                                                    
+S0        1         2214864111      unc_m_cas_count.all                                                   
+S1        1            1247024      unc_m_cas_count.rd                                                    
+S1        1             961127      unc_m_cas_count.wr                                                    
+S1        1            2208162      unc_m_cas_count.all                                                   
+
+       5.000672501 seconds time elapsed
+
+
+ Performance counter stats for 'system wide':
+
+S0        1         2214408210      unc_m_cas_count.rd                                                    
+S0        1             966296      unc_m_cas_count.wr                                                    
+S0        1         2215295298      unc_m_cas_count.all                                                   
+S1        1            1502884      unc_m_cas_count.rd                                                    
+S1        1             946145      unc_m_cas_count.wr                                                    
+S1        1            2448877      unc_m_cas_count.all                                                   
+
+       5.001126057 seconds time elapsed
+
+
+ Performance counter stats for 'system wide':
+
+S0        1         2214148544      unc_m_cas_count.rd                                                    
+S0        1             968215      unc_m_cas_count.wr                                                    
+S0        1         2215036788      unc_m_cas_count.all                                                   
+S1        1            1156798      unc_m_cas_count.rd                                                    
+S1        1             944225      unc_m_cas_count.wr                                                    
+S1        1            2100831      unc_m_cas_count.all                                                   
+
+       5.000695562 seconds time elapsed
+
