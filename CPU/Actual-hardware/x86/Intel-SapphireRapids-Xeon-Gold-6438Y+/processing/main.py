@@ -75,9 +75,9 @@ def main():
     
     
     # making data ready for outlier processing...
-    # dfs_lat_raw = utils.split_dataframe_by_rd_pause_percentage(df_lat_raw)
-    # dfs_lat_raw = utils.discard_outliers(dfs_lat_raw, 'latency')
-    # df_lat_raw = utils.merge_dataframes(dfs_lat_raw)
+    dfs_lat_raw = utils.split_dataframe_by_rd_pause_percentage(df_lat_raw)
+    dfs_lat_raw = utils.discard_outliers(dfs_lat_raw, 'latency')
+    df_lat_raw = utils.merge_dataframes(dfs_lat_raw)
 
     df_lat_mean = calculator.MeanCalculator.calculate(df_lat_raw, 'latency')
 
@@ -98,7 +98,7 @@ def main():
     # Smoothen the curves
     dfs_rw = corrections.smooth_curves(config, dfs_rw)
     # Save curves into files
-    # utils.save_curves_to_file(config, os.path.join(output_dir, 'curves'), dfs_rw)
+    utils.save_curves_to_file(config, os.path.join(output_dir, 'curves'), dfs_rw)
 
     # Merge into the final dataframe
     df = utils.merge_dataframes(list(dfs_rw.values()))

@@ -46,9 +46,10 @@ def main():
     ax.legend(loc="best")
     fig.tight_layout()
 
-    out_path = os.path.join(SCRIPT_DIR, "bandwidth-latency_combined.pdf")
-    fig.savefig(out_path, bbox_inches="tight")
-    print(f"Saved: {out_path}")
+    for ext in ("pdf", "png"):
+        out_path = os.path.join(SCRIPT_DIR, f"bandwidth-latency_combined.{ext}")
+        fig.savefig(out_path, bbox_inches="tight")
+        print(f"Saved: {out_path}")
 
 
 if __name__ == "__main__":
