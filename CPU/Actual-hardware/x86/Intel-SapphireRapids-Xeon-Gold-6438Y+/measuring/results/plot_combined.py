@@ -16,6 +16,15 @@ def main():
     if not csv_paths:
         raise SystemExit(f"No bandwidth-latency.csv found under {SCRIPT_DIR}/*/output/")
 
+
+    plt.rcParams.update({
+        "font.size": 18,
+        "axes.labelsize": 22,
+        "xtick.labelsize": 18,
+        "ytick.labelsize": 18,
+        "legend.fontsize": 16,
+    })
+
     fig, ax = plt.subplots(figsize=(16, 9))
     cmap = plt.get_cmap("tab10")
 
@@ -31,6 +40,9 @@ def main():
         )
 
     ax.set_xlim(0, 1.05 * MEM_MAX_BW)
+
+    ax.set_ylim(0, 1000)
+
     ax.axvline(MEM_MAX_BW, color="gray", linestyle=":", linewidth=2)
     ymin, ymax = ax.get_ylim()
     ax.text(

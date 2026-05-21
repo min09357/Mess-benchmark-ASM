@@ -63,8 +63,14 @@ if [ "${RANDOM_GENERATOR}" = "random" ]; then
     echo "*********** Compiling RandomAccess..."
     cd ${RANDOM_DIR} && make clean && make && cd ${ROOT_DIR}
     echo "*********** RandomAccess compiled successfully."
+elif [ "${RANDOM_GENERATOR}" = "adversarial" ]; then
+    export ADVERSARIAL_DIR="${ROOT_DIR}/src/adversarial"
+    echo "*********** Compiling Adversarial..."
+    cd ${ADVERSARIAL_DIR} && make clean && make && cd ${ROOT_DIR}
+    echo "*********** Adversarial compiled successfully."
 fi
 export RANDOM_DIR
+export ADVERSARIAL_DIR
 
 echo "*********** Compiling Ptr_chase..."
 

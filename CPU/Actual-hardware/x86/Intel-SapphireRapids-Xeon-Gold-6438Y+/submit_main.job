@@ -1,5 +1,5 @@
 #!/bin/bash
-trap 'pkill -P $$ -SIGKILL mpirun 2>/dev/null; pkill -SIGKILL stream_mpi.x 2>/dev/null' EXIT
+trap 'pkill -P $$ -SIGKILL mpirun 2>/dev/null; pkill -SIGKILL stream_mpi.x 2>/dev/null; pkill -SIGKILL random_mpi.x 2>/dev/null; pkill -SIGKILL adversarial_mpi.x 2>/dev/null' EXIT
 
 export LC_ALL=C  # force perf to emit plain integers (no thousand-separator commas)
 
@@ -44,6 +44,11 @@ launch_stream() {
         numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} \
             mpirun -n ${STREAM_CORE_COUNT} \
             ${RANDOM_DIR}/random_mpi.x -r ${rd_percentage} -p ${pause} \
+            >>${STREAM_LOG_FILE} 2>&1 &
+    elif [ "${RANDOM_GENERATOR}" = "adversarial" ]; then
+        numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} \
+            mpirun -n ${STREAM_CORE_COUNT} \
+            ${ADVERSARIAL_DIR}/adversarial_mpi.x -r ${rd_percentage} -p ${pause} \
             >>${STREAM_LOG_FILE} 2>&1 &
     else
         # srun -n ${STREAM_CORE_COUNT} --cpu-bind=map_cpu:${STREAM_CORE_LIST} ${STREAM_DIR}/stream_mpi.x -r ${rd_percentage} -p ${pause} >>${STREAM_LOG_FILE} 2>&1 &

@@ -1,0 +1,105 @@
+[random] all ranks got 1GB-hugepage (1073741824 bytes per table)
+[adversarial] rank 0: phys_base[0]=0xf00000000 OK (1GB-aligned)
+[adversarial] rank 0: found 131072 target-bank addresses (rd=100 pause=5)
+[adversarial] rank 2 ready. Starting access loop.
+[adversarial] rank 12 ready. Starting access loop.
+[adversarial] rank 14 ready. Starting access loop.
+[adversarial] rank 15 ready. Starting access loop.
+[adversarial] rank 16 ready. Starting access loop.
+[adversarial] rank 20 ready. Starting access loop.
+[adversarial] rank 26 ready. Starting access loop.
+[adversarial] rank 11 ready. Starting access loop.
+[adversarial] rank 21 ready. Starting access loop.
+[adversarial] rank 25 ready. Starting access loop.
+[adversarial] rank 22 ready. Starting access loop.
+[adversarial] rank 29 ready. Starting access loop.
+[adversarial] rank 18 ready. Starting access loop.
+[adversarial] rank 4 ready. Starting access loop.
+[adversarial] rank 23 ready. Starting access loop.
+[adversarial] rank 1 ready. Starting access loop.
+[adversarial] rank 6 ready. Starting access loop.
+[adversarial] rank 7 ready. Starting access loop.
+[adversarial] rank 9 ready. Starting access loop.
+[adversarial] rank 10 ready. Starting access loop.
+[adversarial] rank 13 ready. Starting access loop.
+[adversarial] rank 19 ready. Starting access loop.
+[adversarial] rank 27 ready. Starting access loop.
+[adversarial] rank 30 ready. Starting access loop.
+[adversarial] rank 0 ready. Starting access loop.
+[adversarial] rank 3 ready. Starting access loop.
+[adversarial] rank 5 ready. Starting access loop.
+[adversarial] rank 8 ready. Starting access loop.
+[adversarial] rank 17 ready. Starting access loop.
+[adversarial] rank 24 ready. Starting access loop.
+[adversarial] rank 28 ready. Starting access loop.
+./submit_main.job: line 130: 1141629 Killed                  numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} mpirun -n ${STREAM_CORE_COUNT} ${ADVERSARIAL_DIR}/adversarial_mpi.x -r ${rd_percentage} -p ${pause} >> ${STREAM_LOG_FILE} 2>&1
+[random] all ranks got 1GB-hugepage (1073741824 bytes per table)
+[adversarial] rank 0: phys_base[0]=0x4c0000000 OK (1GB-aligned)
+[adversarial] rank 0: found 131072 target-bank addresses (rd=100 pause=5)
+[adversarial] rank 3 ready. Starting access loop.
+[adversarial] rank 5 ready. Starting access loop.
+[adversarial] rank 9 ready. Starting access loop.
+[adversarial] rank 11 ready. Starting access loop.
+[adversarial] rank 15 ready. Starting access loop.
+[adversarial] rank 19 ready. Starting access loop.
+[adversarial] rank 21 ready. Starting access loop.
+[adversarial] rank 23 ready. Starting access loop.
+[adversarial] rank 10 ready. Starting access loop.
+[adversarial] rank 13 ready. Starting access loop.
+[adversarial] rank 28 ready. Starting access loop.
+[adversarial] rank 6 ready. Starting access loop.
+[adversarial] rank 16 ready. Starting access loop.
+[adversarial] rank 18 ready. Starting access loop.
+[adversarial] rank 20 ready. Starting access loop.
+[adversarial] rank 22 ready. Starting access loop.
+[adversarial] rank 24 ready. Starting access loop.
+[adversarial] rank 26 ready. Starting access loop.
+[adversarial] rank 30 ready. Starting access loop.
+[adversarial] rank 0 ready. Starting access loop.
+[adversarial] rank 1 ready. Starting access loop.
+[adversarial] rank 2 ready. Starting access loop.
+[adversarial] rank 4 ready. Starting access loop.
+[adversarial] rank 7 ready. Starting access loop.
+[adversarial] rank 8 ready. Starting access loop.
+[adversarial] rank 12 ready. Starting access loop.
+[adversarial] rank 14 ready. Starting access loop.
+[adversarial] rank 17 ready. Starting access loop.
+[adversarial] rank 25 ready. Starting access loop.
+[adversarial] rank 27 ready. Starting access loop.
+[adversarial] rank 29 ready. Starting access loop.
+./submit_main.job: line 130: 1152089 Killed                  numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} mpirun -n ${STREAM_CORE_COUNT} ${ADVERSARIAL_DIR}/adversarial_mpi.x -r ${rd_percentage} -p ${pause} >> ${STREAM_LOG_FILE} 2>&1
+[random] all ranks got 1GB-hugepage (1073741824 bytes per table)
+[adversarial] rank 0: phys_base[0]=0xc80000000 OK (1GB-aligned)
+[adversarial] rank 0: found 131072 target-bank addresses (rd=100 pause=5)
+[adversarial] rank 13 ready. Starting access loop.
+[adversarial] rank 1 ready. Starting access loop.
+[adversarial] rank 3 ready. Starting access loop.
+[adversarial] rank 7 ready. Starting access loop.
+[adversarial] rank 9 ready. Starting access loop.
+[adversarial] rank 15 ready. Starting access loop.
+[adversarial] rank 17 ready. Starting access loop.
+[adversarial] rank 18 ready. Starting access loop.
+[adversarial] rank 19 ready. Starting access loop.
+[adversarial] rank 26 ready. Starting access loop.
+[adversarial] rank 29 ready. Starting access loop.
+[adversarial] rank 28 ready. Starting access loop.
+[adversarial] rank 0 ready. Starting access loop.
+[adversarial] rank 11 ready. Starting access loop.
+[adversarial] rank 16 ready. Starting access loop.
+[adversarial] rank 4 ready. Starting access loop.
+[adversarial] rank 5 ready. Starting access loop.
+[adversarial] rank 8 ready. Starting access loop.
+[adversarial] rank 23 ready. Starting access loop.
+[adversarial] rank 12 ready. Starting access loop.
+[adversarial] rank 22 ready. Starting access loop.
+[adversarial] rank 27 ready. Starting access loop.
+[adversarial] rank 6 ready. Starting access loop.
+[adversarial] rank 10 ready. Starting access loop.
+[adversarial] rank 14 ready. Starting access loop.
+[adversarial] rank 21 ready. Starting access loop.
+[adversarial] rank 24 ready. Starting access loop.
+[adversarial] rank 30 ready. Starting access loop.
+[adversarial] rank 2 ready. Starting access loop.
+[adversarial] rank 20 ready. Starting access loop.
+[adversarial] rank 25 ready. Starting access loop.
+./submit_main.job: line 130: 1157311 Killed                  numactl -C${STREAM_CORE_LIST} ${STREAM_NUMACTL_ADDITIONAL_ARGS} mpirun -n ${STREAM_CORE_COUNT} ${ADVERSARIAL_DIR}/adversarial_mpi.x -r ${rd_percentage} -p ${pause} >> ${STREAM_LOG_FILE} 2>&1
