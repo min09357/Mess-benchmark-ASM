@@ -107,6 +107,7 @@ def main():
     df.to_csv(os.path.join(output_dir, 'bandwidth-latency.csv'), index=False)
 
     visualization.final_curves(config, os.path.join(output_dir, 'bandwidth-latency.pdf'), dfs_rw, bw_column='bandwidth_smooth', lat_column='latency_smooth', lat_unit='ns')
+    # visualization.final_curves(config, os.path.join(output_dir, 'bandwidth-latency.pdf'), dfs_rw, bw_column='bandwidth_smooth', lat_column='latency_mean', lat_unit='ns')
     
 
 
